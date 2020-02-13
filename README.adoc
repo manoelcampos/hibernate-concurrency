@@ -1,19 +1,29 @@
+:numbered:
+
 = Hibernate Concurrent Update and Quarkus Panache
 
 This repository contains two maven projects that use an in-memory H2 database which is populated when the application starts. They use the `@Version` Hibernate's annotation to detect concurrent updates on the same entity. The two projects are:
 
-- link:1-database-concurrency-plain-hibernate[1-database-concurrency-plain-hibernate]: that uses plain Hibernate with the `@Version` annotation and works just as expected.
-- link:2-database-concurrency-panache[2-database-concurrency-panache]: uses Quarkus Panache with the `@Version` annotation, but no `OptimisticLockException` is thrown when two users try to update the same entity.
+- link:1-database-concurrency-plain-hibernate[1-database-concurrency-plain-hibernate] - that uses Quarkus and plain Hibernate with the `@Version` annotation, working just as expected: `OptimisticLockException` is thrown when two users try to update the same entity.
+- link:2-database-concurrency-panache[2-database-concurrency-panache] - uses Quarkus and Panache with the `@Version` annotation, but no `OptimisticLockException` is thrown.
 
 == Running the projects
 
-Inside the root directory of any of the two projects shown above, type:
+=== Quarkus and plain Hibernate
+
+Inside the root directory of project link:1-database-concurrency-plain-hibernate[1-database-concurrency-plain-hibernate], type:
 
 [source,bash]
 ----
 ./mvnw compile quarkus:dev
 ----
 
-Then, open two browser tabs at http://localhost:8080/cliente.html?id=1 to update the same entity (simulating to users).
-For project #1, an `OptimisticLockException` will be thrown (as expected).
-For project #2, it will just overwrite the data on the previous update.
+Then, open two browser tabs at http://localhost:8080/cliente.html?id=1 to update the same entity (simulating two concurrent users). 
+
+An `OptimisticLockException` will be thrown, as expected.
+
+=== Quarkus and Panache
+
+Run project link:2-database-concurrency-panache[2-database-concurrency-panache] using the same previous command and follow the same steps.
+
+No `OptimisticLockException` will be thrown and the data on the previous update will be overwritten.
