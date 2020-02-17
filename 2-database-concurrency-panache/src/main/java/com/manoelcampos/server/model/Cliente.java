@@ -1,6 +1,7 @@
 package com.manoelcampos.server.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.runtime.JpaOperations;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -17,18 +18,8 @@ public class Cliente extends PanacheEntity implements Serializable {
     public long versao;
 
     public static boolean update(Cliente cliente) {
-        Cliente existing = Cliente.findById(cliente.id);
-        if(existing != null){
-            existing.nome = cliente.nome;
-            existing.cpf = cliente.cpf;
-            existing.sexo = cliente.sexo;
-            existing.endereco = cliente.endereco;
-            existing.telefone = cliente.telefone;
-            existing.versao = cliente.versao;
-            existing.persistAndFlush();
-            return true;
-        }
-
-        return false;
+        Cliente updated = cliente.merge();
+        updated.flush();
+        return true;
     }
 }

@@ -2,7 +2,10 @@
 
 = Hibernate Concurrent Update and Quarkus Panache
 
-This repository contains two maven projects that use an in-memory H2 database which is populated when the application starts. They use the `@Version` Hibernate's annotation to detect concurrent updates on the same entity. The two projects are:
+This repository contains two maven projects that use an in-memory H2 database which is populated when the application starts. They use the `@Version` Hibernate's annotation to detect concurrent updates on the same entity,
+according to issue https://github.com/quarkusio/quarkus/issues/7193[#7193]. 
+
+The two projects are:
 
 - link:1-database-concurrency-plain-hibernate[1-database-concurrency-plain-hibernate] - that uses Quarkus and plain Hibernate with the `@Version` annotation, working just as expected: `OptimisticLockException` is thrown when two users try to update the same entity.
 - link:2-database-concurrency-panache[2-database-concurrency-panache] - uses Quarkus and Panache with the `@Version` annotation, but no `OptimisticLockException` is thrown.
