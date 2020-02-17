@@ -30,6 +30,7 @@ public class JpaDAO<T extends Cadastro> implements DAO<T> {
         if(entity.getId() > 0)
             em.merge(entity);
         else em.persist(entity);
+        em.flush();
         
         return entity.getId();
     }

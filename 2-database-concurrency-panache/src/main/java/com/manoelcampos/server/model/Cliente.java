@@ -25,7 +25,7 @@ public class Cliente extends PanacheEntity implements Serializable {
             existing.endereco = cliente.endereco;
             existing.telefone = cliente.telefone;
             existing.versao = cliente.versao;
-            existing.persist();
+            existing.persistAndFlush();
             return true;
         }
 
