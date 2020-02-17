@@ -18,12 +18,16 @@ Inside the root directory of project link:1-database-concurrency-plain-hibernate
 ./mvnw compile quarkus:dev
 ----
 
-Then, open two browser tabs at http://localhost:8080/cliente.html?id=1 to update the same entity (simulating two concurrent users). 
+Then, open two browser tabs at http://localhost:8080/cliente.html?id=1 to update the same entity (simulating two concurrent users). Change something in each tab and click the "Send" button.
 
-An `OptimisticLockException` will be thrown, as expected.
+An `OptimisticLockException` will be thrown, as expected and shown below:
+
+image:lock.gif[]
 
 === Quarkus and Panache
 
 Run project link:2-database-concurrency-panache[2-database-concurrency-panache] using the same previous command and follow the same steps.
 
-No `OptimisticLockException` will be thrown and the data on the previous update will be overwritten.
+No `OptimisticLockException` will be thrown and the data on the previous update will be overwritten, as shown below:
+
+image:no-lock.gif[]
