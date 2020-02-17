@@ -12,7 +12,6 @@ import java.util.List;
 import static javax.ws.rs.core.Response.Status;
 
 @Path("/cliente")
-@Transactional
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClienteResource {
@@ -27,12 +26,14 @@ public class ClienteResource {
         return Cliente.findById(id);
     }
 
+    @Transactional
     @POST
     public long insert(Cliente cliente) {
         Cliente.persist(cliente);
         return cliente.id;
     }
 
+    @Transactional
     @PUT
     public void update(Cliente cliente) {
         try{

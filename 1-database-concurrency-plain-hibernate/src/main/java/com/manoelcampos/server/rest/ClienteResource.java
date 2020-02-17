@@ -22,7 +22,6 @@ import java.util.List;
 import static javax.ws.rs.core.Response.Status;
 
 @Path("/cliente")
-@Transactional
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClienteResource {
@@ -45,11 +44,13 @@ public class ClienteResource {
     }
 
     @POST
+    @Transactional
     public long insert(Cliente cliente) {
         return dao.save(cliente);
     }
     
     @PUT
+    @Transactional
     public void update(Cliente cliente) {
         try {
             dao.save(cliente);
