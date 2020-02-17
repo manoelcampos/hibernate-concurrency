@@ -17,14 +17,15 @@ public class Cliente extends PanacheEntity implements Serializable {
     public long versao;
 
     public static boolean update(Cliente cliente) {
-        Cliente existente = Cliente.findById(cliente.id);
-        if(existente != null){
-            existente.nome = cliente.nome;
-            existente.cpf = cliente.cpf;
-            existente.sexo = cliente.sexo;
-            existente.endereco = cliente.endereco;
-            existente.telefone = cliente.telefone;
-            existente.persist();
+        Cliente existing = Cliente.findById(cliente.id);
+        if(existing != null){
+            existing.nome = cliente.nome;
+            existing.cpf = cliente.cpf;
+            existing.sexo = cliente.sexo;
+            existing.endereco = cliente.endereco;
+            existing.telefone = cliente.telefone;
+            existing.versao = cliente.versao;
+            existing.persist();
             return true;
         }
 
