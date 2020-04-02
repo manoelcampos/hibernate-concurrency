@@ -17,9 +17,4 @@ public class Cliente extends PanacheEntity implements Serializable {
     @Version
     public long versao;
 
-    public static boolean update(Cliente cliente) {
-        Cliente updated = cliente.merge();
-        updated.flush();
-        return true;
-    }
 }

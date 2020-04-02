@@ -1,10 +1,19 @@
 package com.manoelcampos.server.rest;
 
 import com.manoelcampos.server.model.Cliente;
+import io.quarkus.hibernate.orm.panache.Panache;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -36,20 +45,17 @@ public class ClienteResource {
     @Transactional
     @PUT
     public void update(Cliente cliente) {
-        try{
-            if(Cliente.update(cliente))
-                return;
-        }catch(OptimisticLockException e){
+        try {
+            Panache.getEntityManager().merge(cliente);
+        } catch (OptimisticLockException e) {
             Response response = Response.status(Status.CONFLICT)
-                                        .entity("The record was changed by another user. Try reloading the page.")
-                                        .type(MediaType.TEXT_PLAIN)
-                                        .build();
+                    .entity("The record was changed by another user. Try reloading the page.")
+                    .type(MediaType.TEXT_PLAIN)
+                    .build();
             throw new WebApplicationException(e, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new WebApplicationException(e, Response.Status.INTERNAL_SERVER_ERROR);
         }
-
-        throw new WebApplicationException(Response.Status.NOT_FOUND);
     }
 
 }
