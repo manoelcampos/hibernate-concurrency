@@ -26,21 +26,18 @@ import static javax.ws.rs.core.Response.Status;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClienteResource {
 
-    @Inject 
+    @Inject
     DAO<Cliente> dao;
 
     @GET
     public List<Cliente> all() {
         return dao.all();
     }
-        
+
     @GET
     @Path("{id}")
     public Cliente findById(@PathParam("id") long id) {
-        String jpql = "select c from Cliente c where c.id = :id";
-        TypedQuery<Cliente> query = dao.createQuery(jpql);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+        return dao.findById(id);
     }
 
     @POST
@@ -48,7 +45,7 @@ public class ClienteResource {
     public long insert(Cliente cliente) {
         return dao.save(cliente);
     }
-    
+
     @PUT
     @Transactional
     public void update(Cliente cliente) {
