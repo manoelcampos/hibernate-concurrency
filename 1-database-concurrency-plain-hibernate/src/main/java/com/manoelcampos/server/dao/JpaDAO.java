@@ -47,8 +47,6 @@ public class JpaDAO<T extends Cadastro> implements DAO<T> {
             em.persist(entity);
             LOGGER.info("entity {}",entity);
         }
-        em.flush();
-
         return entity.getId();
     }
 
