@@ -46,26 +46,10 @@ public class ClienteResource {
     @PUT
     public void update(Cliente cliente) {
         try {
-            int useVersion=2;
-            if (useVersion==1){
-
-                /**
-                 * this is weird, why no CLiente.merge(cliente) ? Missing in the API
-                 */
-
-                Panache.getEntityManager().merge(cliente);
-            }else if (useVersion==2){
-                final Cliente byId = Cliente.findById(cliente.id);
-                byId.cpf=cliente.cpf;
-                byId.endereco=cliente.endereco;
-                byId.nome=cliente.nome;
-                byId.sexo=cliente.sexo;
-                byId.telefone=cliente.telefone;
-                // setting version has no effect - its value will be ignored on the sql update
-                byId.versao=0;
-                // leave out copying the @Version field
-            }
-
+            /**
+             * this is weird, why no CLiente.merge(cliente) ? Missing in the API
+             */
+            Panache.getEntityManager().merge(cliente);
         } catch (OptimisticLockException e) {
             Response response = Response.status(Status.CONFLICT)
                     .entity("The record was changed by another user. Try reloading the page.")
