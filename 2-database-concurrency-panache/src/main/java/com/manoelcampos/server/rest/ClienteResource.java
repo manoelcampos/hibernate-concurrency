@@ -46,6 +46,9 @@ public class ClienteResource {
     @PUT
     public void update(Cliente cliente) {
         try {
+            /**
+             * this is weird, why no CLiente.merge(cliente) ? Missing in the API
+             */
             Panache.getEntityManager().merge(cliente);
         } catch (OptimisticLockException e) {
             Response response = Response.status(Status.CONFLICT)
