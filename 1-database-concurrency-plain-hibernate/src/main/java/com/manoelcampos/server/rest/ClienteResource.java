@@ -37,10 +37,7 @@ public class ClienteResource {
     @GET
     @Path("{id}")
     public Cliente findById(@PathParam("id") long id) {
-        String jpql = "select c from Cliente c where c.id = :id";
-        TypedQuery<Cliente> query = dao.createQuery(jpql);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+        return dao.findById(id);
     }
 
     @POST
@@ -59,8 +56,10 @@ public class ClienteResource {
                                         .entity("The record was changed by another user. Try reloading the page.")
                                         .type(MediaType.TEXT_PLAIN)
                                         .build();
+            e.printStackTrace();
             throw new WebApplicationException(e, response);
         }catch(Exception e){
+            e.printStackTrace();
             throw new WebApplicationException(e, Response.Status.INTERNAL_SERVER_ERROR);
         }
     }

@@ -33,8 +33,8 @@ public class ClienteResource {
         return cliente.id;
     }
 
-    @Transactional
     @PUT
+    @Transactional
     public void update(Cliente cliente) {
         try{
             if(Cliente.update(cliente))
