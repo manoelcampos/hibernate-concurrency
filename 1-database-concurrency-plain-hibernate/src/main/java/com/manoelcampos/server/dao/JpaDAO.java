@@ -1,8 +1,8 @@
 package com.manoelcampos.server.dao;
 
 import com.manoelcampos.server.model.Cadastro;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class JpaDAO<T extends Cadastro> implements DAO<T> {

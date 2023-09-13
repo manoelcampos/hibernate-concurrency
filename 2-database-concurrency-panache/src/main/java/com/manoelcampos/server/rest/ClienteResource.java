@@ -2,14 +2,14 @@ package com.manoelcampos.server.rest;
 
 import com.manoelcampos.server.model.Cliente;
 
-import javax.persistence.OptimisticLockException;
-import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
-import static javax.ws.rs.core.Response.Status;
+import static jakarta.ws.rs.core.Response.Status;
 
 @Path("/cliente")
 @Produces(MediaType.APPLICATION_JSON)

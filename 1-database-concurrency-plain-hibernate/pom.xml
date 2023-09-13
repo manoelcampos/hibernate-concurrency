@@ -6,11 +6,11 @@
   <artifactId>database-concurrency-plain-hibernate</artifactId>
   <version>1.0.0</version>
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus.version>1.2.0.Final</quarkus.version>
+    <quarkus.version>3.3.2</quarkus.version>
     <surefire-plugin.version>2.22.0</surefire-plugin.version>
   </properties>
   <dependencyManagement>
@@ -57,9 +57,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <uberJar>true</uberJar>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>

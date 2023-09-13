@@ -1,3 +1,5 @@
+.quarkus/
+.jar
 # Eclipse
 .project
 .classpath

@@ -1,7 +1,7 @@
 package com.manoelcampos.server.dao;
 
 import com.manoelcampos.server.model.Cadastro;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 

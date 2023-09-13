@@ -4,13 +4,12 @@ import com.manoelcampos.server.dao.DAO;
 import com.manoelcampos.server.dao.JpaDAO;
 import com.manoelcampos.server.model.Cadastro;
 import java.lang.reflect.ParameterizedType;
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.enterprise.inject.Produces;
+import jakarta.enterprise.inject.spi.InjectionPoint;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 public class Producers {
-    @Produces
     @PersistenceContext
     EntityManager em;
     
